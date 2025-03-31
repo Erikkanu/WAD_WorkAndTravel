@@ -13,5 +13,6 @@ namespace AspNetCoreEFCoreApp.Models
         { }
         public DbSet<Job>? Jobs { get; set; }
         public DbSet<Ticket>? Tickets { get; set; }
+        public DbSet<RegistrationForm>? Registrations { get; set; }
     }
 }

@@ -5,6 +5,7 @@
 	Layout = "~/Views/Shared/_Layout.cshtml";
 	ViewBag.Title = "Work And Travel";
 }
+@model WAD_WorkAndTravel.Models.RegistrationForm
 
 <!DOCTYPE html>
 <html lang="en">
@@ -110,226 +111,106 @@
     </section>
 
     <!-- Registration Form -->
-    <section class="registration-form py-5 bg-light">
-      <div class="container">
+
+
+<section class="registration-form py-5 bg-light">
+    <div class="container">
         <h2 class="text-center mb-5">Registration Form</h2>
         <div class="row justify-content-center">
-          <div class="col-lg-8">
-            <div class="card">
-              <div class="card-body p-4">
-                <form id="registrationForm">
-                  <input type="hidden" id="selectedPlan" name="selectedPlan" value="">
+            <div class="col-lg-8">
+                <div class="card">
+                    <div class="card-body p-4">
+                        <form asp-action="SubmitForm" asp-controller="Registration" method="post">
+                            <input type="hidden" asp-for="Plan" />
 
-                  <div class="alert alert-info" id="planAlert">
-                    Please select a plan above to continue with registration.
-                  </div>
+                            <div class="mb-4">
+                                <h4>Personal Information</h4>
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label for="firstName" class="form-label">First Name*</label>
+                                        <input type="text" class="form-control" asp-for="FirstName" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="lastName" class="form-label">Last Name*</label>
+                                        <input type="text" class="form-control" asp-for="LastName" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="email" class="form-label">Email*</label>
+                                        <input type="email" class="form-control" asp-for="Email" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="phone" class="form-label">Phone Number*</label>
+                                        <input type="tel" class="form-control" asp-for="Phone" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="dateOfBirth" class="form-label">Date of Birth*</label>
+                                        <input type="date" class="form-control" asp-for="DateOfBirth" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="nationality" class="form-label">Nationality*</label>
+                                        <input type="text" class="form-control" asp-for="Nationality" required>
+                                    </div>
+                                </div>
+                            </div>
 
-                  <!-- Personal Information -->
-                  <div class="mb-4">
-                    <h4>Personal Information</h4>
-                    <div class="row g-3">
-                      <div class="col-md-6">
-                        <label for="firstName" class="form-label">First Name*</label>
-                        <input type="text" class="form-control" id="firstName" name="firstName" required>
-                      </div>
-                      <div class="col-md-6">
-                        <label for="lastName" class="form-label">Last Name*</label>
-                        <input type="text" class="form-control" id="lastName" name="lastName" required>
-                      </div>
-                      <div class="col-md-6">
-                        <label for="email" class="form-label">Email*</label>
-                        <input type="email" class="form-control" id="email" name="email" required>
-                      </div>
-                      <div class="col-md-6">
-                        <label for="phone" class="form-label">Phone Number*</label>
-                        <input type="tel" class="form-control" id="phone" name="phone" required>
-                      </div>
-                      <div class="col-md-6">
-                        <label for="dateOfBirth" class="form-label">Date of Birth*</label>
-                        <input type="date" class="form-control" id="dateOfBirth" name="dateOfBirth" required>
-                      </div>
-                      <div class="col-md-6">
-                        <label for="nationality" class="form-label">Nationality*</label>
-                        <input type="text" class="form-control" id="nationality" name="nationality" required>
-                      </div>
-                    </div>
-                  </div>
+                            <!-- University Information -->
+                            <div class="mb-4">
+                                <h4>University Information</h4>
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label for="university" class="form-label">University/College Name*</label>
+                                        <input type="text" class="form-control" asp-for="University" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="major" class="form-label">Field of Study/Major*</label>
+                                        <input type="text" class="form-control" asp-for="FieldOfStudy" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="academicYear" class="form-label">Current Academic Year*</label>
+                                        <select class="form-select" asp-for="YearOfStudy" required>
+                                            <option value="">Select Year</option>
+                                            <option value="1st Year">1st Year</option>
+                                            <option value="2nd Year">2nd Year</option>
+                                            <option value="3rd Year">3rd Year</option>
+                                            <option value="4th Year">4th Year</option>
+                                            <option value="Graduate">Graduate Student</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="graduationDate" class="form-label">Expected Graduation Date*</label>
+                                        <input type="month" class="form-control" asp-for="GraduationDate" required>
+                                    </div>
+                                </div>
+                            </div>
 
-                  <!-- University Information -->
-                  <div class="mb-4">
-                    <h4>University Information</h4>
-                    <div class="row g-3">
-                      <div class="col-md-6">
-                        <label for="university" class="form-label">University/College Name*</label>
-                        <input type="text" class="form-control" id="university" name="university" required>
-                      </div>
-                      <div class="col-md-6">
-                        <label for="major" class="form-label">Field of Study/Major*</label>
-                        <input type="text" class="form-control" id="major" name="major" required>
-                      </div>
-                      <div class="col-md-6">
-                        <label for="academicYear" class="form-label">Current Academic Year*</label>
-                        <select class="form-select" id="academicYear" name="academicYear" required>
-                          <option value="">Select Year</option>
-                          <option value="1">1st Year</option>
-                          <option value="2">2nd Year</option>
-                          <option value="3">3rd Year</option>
-                          <option value="4">4th Year</option>
-                          <option value="5">Graduate Student</option>
-                        </select>
-                      </div>
-                      <div class="col-md-6">
-                        <label for="graduationDate" class="form-label">Expected Graduation Date*</label>
-                        <input type="month" class="form-control" id="graduationDate" name="graduationDate" required>
-                      </div>
+                            <!-- Program Preferences -->
+                            <div class="mb-4">
+                                <h4>Program Preferences</h4>
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label for="preferredStartDate" class="form-label">Preferred Start Date*</label>
+                                        <input type="month" class="form-control" asp-for="PreferredStartDate" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="programDuration" class="form-label">Program Duration*</label>
+                                        <select class="form-select" asp-for="ProgramDuration" required>
+                                            <option value="">Select Duration</option>
+                                            <option value="2 months">2 months</option>
+                                            <option value="3 months">3 months</option>
+                                            <option value="4 months">4 months</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Submit Registration</button>
+                        </form>
                     </div>
-                  </div>
-
-                  <!-- Program Preferences -->
-                  <div class="mb-4">
-                    <h4>Program Preferences</h4>
-                    <div class="row g-3">
-                      <div class="col-md-6">
-                        <label for="preferredStartDate" class="form-label">Preferred Start Date*</label>
-                        <input type="month" class="form-control" id="preferredStartDate" name="preferredStartDate" required>
-                      </div>
-                      <div class="col-md-6">
-                        <label for="programDuration" class="form-label">Program Duration*</label>
-                        <select class="form-select" id="programDuration" name="programDuration" required>
-                          <option value="">Select Duration</option>
-                          <option value="2">2 months</option>
-                          <option value="3">3 months</option>
-                          <option value="4">4 months</option>
-                        </select>
-                      </div>
-                      <div class="col-12">
-                        <label for="jobPreferences" class="form-label">Job Preferences (select up to 3)</label>
-                        <div class="row g-2">
-                          <div class="col-md-4">
-                            <div class="form-check">
-                              <input class="form-check-input" type="checkbox" value="hotel" id="jobHotel" name="jobPreferences">
-                              <label class="form-check-label" for="jobHotel">Hotel/Resort</label>
-                            </div>
-                          </div>
-                          <div class="col-md-4">
-                            <div class="form-check">
-                              <input class="form-check-input" type="checkbox" value="restaurant" id="jobRestaurant" name="jobPreferences">
-                              <label class="form-check-label" for="jobRestaurant">Restaurant</label>
-                            </div>
-                          </div>
-                          <div class="col-md-4">
-                            <div class="form-check">
-                              <input class="form-check-input" type="checkbox" value="retail" id="jobRetail" name="jobPreferences">
-                              <label class="form-check-label" for="jobRetail">Retail</label>
-                            </div>
-                          </div>
-                          <div class="col-md-4">
-                            <div class="form-check">
-                              <input class="form-check-input" type="checkbox" value="amusement" id="jobAmusement" name="jobPreferences">
-                              <label class="form-check-label" for="jobAmusement">Amusement Park</label>
-                            </div>
-                          </div>
-                          <div class="col-md-4">
-                            <div class="form-check">
-                              <input class="form-check-input" type="checkbox" value="lifeguard" id="jobLifeguard" name="jobPreferences">
-                              <label class="form-check-label" for="jobLifeguard">Lifeguard</label>
-                            </div>
-                          </div>
-                          <div class="col-md-4">
-                            <div class="form-check">
-                              <input class="form-check-input" type="checkbox" value="other" id="jobOther" name="jobPreferences">
-                              <label class="form-check-label" for="jobOther">Other</label>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-12">
-                        <label for="locationPreferences" class="form-label">Preferred Locations (select up to 3)</label>
-                        <div class="row g-2">
-                          <div class="col-md-4">
-                            <div class="form-check">
-                              <input class="form-check-input" type="checkbox" value="california" id="locCalifornia" name="locationPreferences">
-                              <label class="form-check-label" for="locCalifornia">California</label>
-                            </div>
-                          </div>
-                          <div class="col-md-4">
-                            <div class="form-check">
-                              <input class="form-check-input" type="checkbox" value="florida" id="locFlorida" name="locationPreferences">
-                              <label class="form-check-label" for="locFlorida">Florida</label>
-                            </div>
-                          </div>
-                          <div class="col-md-4">
-                            <div class="form-check">
-                              <input class="form-check-input" type="checkbox" value="newyork" id="locNewYork" name="locationPreferences">
-                              <label class="form-check-label" for="locNewYork">New York</label>
-                            </div>
-                          </div>
-                          <div class="col-md-4">
-                            <div class="form-check">
-                              <input class="form-check-input" type="checkbox" value="colorado" id="locColorado" name="locationPreferences">
-                              <label class="form-check-label" for="locColorado">Colorado</label>
-                            </div>
-                          </div>
-                          <div class="col-md-4">
-                            <div class="form-check">
-                              <input class="form-check-input" type="checkbox" value="alaska" id="locAlaska" name="locationPreferences">
-                              <label class="form-check-label" for="locAlaska">Alaska</label>
-                            </div>
-                          </div>
-                          <div class="col-md-4">
-                            <div class="form-check">
-                              <input class="form-check-input" type="checkbox" value="nopreference" id="locNoPreference" name="locationPreferences">
-                              <label class="form-check-label" for="locNoPreference">No Preference</label>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Additional Information -->
-                  <div class="mb-4">
-                    <h4>Additional Information</h4>
-                    <div class="mb-3">
-                      <label for="englishLevel" class="form-label">English Proficiency Level*</label>
-                      <select class="form-select" id="englishLevel" name="englishLevel" required>
-                        <option value="">Select Level</option>
-                        <option value="beginner">Beginner</option>
-                        <option value="intermediate">Intermediate</option>
-                        <option value="advanced">Advanced</option>
-                        <option value="fluent">Fluent</option>
-                      </select>
-                    </div>
-                    <div class="mb-3">
-                      <label for="workExperience" class="form-label">Relevant Work Experience</label>
-                      <textarea class="form-control" id="workExperience" name="workExperience" rows="3"></textarea>
-                    </div>
-                    <div class="mb-3">
-                      <label for="additionalInfo" class="form-label">Additional Information or Special Requests</label>
-                      <textarea class="form-control" id="additionalInfo" name="additionalInfo" rows="3"></textarea>
-                    </div>
-                  </div>
-
-                  <!-- Terms and Conditions -->
-                  <div class="mb-4">
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="termsAgreement" name="termsAgreement" required>
-                      <label class="form-check-label" for="termsAgreement">
-                        I agree to the <a href="#" data-bs-toggle="modal" data-bs-target="#termsModal">Terms and Conditions</a> and <a href="#" data-bs-toggle="modal" data-bs-target="#privacyModal">Privacy Policy</a>
-                      </label>
-                    </div>
-                  </div>
-
-                  <div class="d-grid">
-                    <button type="submit" class="btn btn-primary btn-lg" id="submitButton" disabled>Submit Registration</button>
-                  </div>
-                </form>
-              </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
-    </section>
+    </div>
+</section>
+
 
     <!-- Modal for Terms and Conditions -->
     <div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
