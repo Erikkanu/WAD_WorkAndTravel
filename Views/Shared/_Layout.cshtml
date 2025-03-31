@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - WAD_WorkAndTravel</title>
+    <script type="importmap"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/WAD_WorkAndTravel.styles.css" asp-append-version="true" />
+</head>
+<body>
+   <header class="fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+        <a class="navbar-brand" href="/Main">
+          <img src="~/images/logo1.png" alt="Work & Travel Agency Logo" height="150">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="/Main">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/Jobs">Jobs</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/Faq">Q&A</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/Gallery">Gallery</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/Registration">Registration</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/Tickets">Plane Tickets</a>
+            </li>
+          </ul>
+          <div class="login-btn">
+            <a href="login.html" class="btn btn-primary">Login</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+    
+  <main role="main" class="pb-3">
+        @RenderBody()
+  </main>
+
+    <footer class="bg-dark text-light py-4">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-4 text-center">
+          <h5>Contact Us</h5>
+          <address>
+            <p><i class="fas fa-map-marker-alt"></i> Calea Unirii 12, Craiova, Romania</p>
+            <p><i class="fas fa-phone"></i> +40 123 456 789</p>
+            <p><i class="fas fa-envelope"></i> workandtravel@gmail.com</p>
+          </address>
+        </div>
+        <div class="col-md-4 text-center">
+          <h5>Connect With Us</h5>
+          <div class="social-links">
+            <a href="#" class="text-light me-2"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="text-light me-2"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="text-light me-2"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="text-light me-2"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <div class="text-center">
+        <p>&copy; 2025 Work & Travel Agency. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

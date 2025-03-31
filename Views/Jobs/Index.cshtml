@@ -1,0 +1,177 @@
+﻿@using System.Globalization
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Jobs Available";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Available Jobs | Work & Travel USA</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="~/css/site.css">
+</head>
+<body>
+ 
+  <main>
+    <!-- Jobs Hero Section -->
+    <section class="page-hero bg-primary text-white">
+      <div class="container py-5">
+        <div class="row py-5">
+          <div class="col-lg-8">
+            <h1>Available Jobs</h1>
+            <p class="lead">Find the perfect job opportunity for your Work & Travel experience in the USA.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Job Search and Filters -->
+<section class="job-search py-4">
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+                <form method="get" asp-action="Index">
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <label for="jobKeyword" class="form-label">Keyword</label>
+                            <input type="text" class="form-control" id="jobKeyword" name="keyword" 
+                                   placeholder="Job title, company, etc." value="@Context.Request.Query["keyword"]">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="jobLocation" class="form-label">State</label>
+                            <select class="form-select" id="jobState" name="state">
+                                <option value="">All States</option>
+                                <option value="California" selected="@(Context.Request.Query["state"] == "California")">California</option>
+                                <option value="Florida" selected="@(Context.Request.Query["state"] == "Florida")">Florida</option>
+                                <option value="New York" selected="@(Context.Request.Query["state"] == "New York")">New York</option>
+                                <option value="Virginia" selected="@(Context.Request.Query["state"] == "Virginia")">Virginia</option>
+                                <option value="Alaska" selected="@(Context.Request.Query["state"] == "Alaska")">Alaska</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="jobCategory" class="form-label">Category</label>
+                            <select class="form-select" id="jobCategory" name="category">
+                                <option value="">All Categories</option>
+                                <option value="Hospitality" selected="@(Context.Request.Query["category"] == "Hospitality")">Hospitality</option>
+                                <option value="Retail" selected="@(Context.Request.Query["category"] == "Retail")">Retail</option>
+                                <option value="Food Service" selected="@(Context.Request.Query["category"] == "Food Service")">Food Service</option>
+                                <option value="Entertainment" selected="@(Context.Request.Query["category"] == "Entertainment")">Entertainment</option>
+                                <option value="Resorts" selected="@(Context.Request.Query["category"] == "Resorts")">Resorts</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2 d-flex align-items-end">
+                            <button type="submit" class="btn btn-primary w-100">Search Jobs</button>
+                        </div>
+                        <div class="col-md-2 d-flex align-items-end">
+                            <a href="/Jobs/Index" class="btn btn-primary w-100">Clear Filters</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Job Listings Section -->
+<section class="job-listings py-4">
+    <div class="container">
+        <div class="row"> <!-- This ensures proper column alignment -->
+                    @foreach (var job in Model)
+                    {
+                    <div class="col-lg-6 col-md-6 mb-4">
+                        <div class="card job-card h-100">
+                            <div class="card-body">
+
+                                <!-- Job Header: Logo and Category -->
+                                <div class="d-flex justify-content-between mb-3">
+                                    <img src="@job.LogoPath" 
+                                        alt="@job.Company Logo" 
+                                        height="55" 
+                                        onerror="this.src='/images/default-logo.png'">
+                                    <span class="badge bg-success">@job.Category</span>
+                                </div>
+
+                                <!-- Job Title and Company Details -->
+                                <h3 class="card-title">@job.Title</h3>
+                                <p class="card-text text-muted">@job.Company, @job.Location, @job.State</p>
+
+                                <!-- Job Details -->
+                                <div class="job-details my-3">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <small>
+                                                <i class="fas fa-dollar-sign me-2"></i> $@job.Wage/hour
+                                            </small>
+                                        </div>
+                                        <div class="col-6">
+                                            <small>
+                                                <i class="fas fa-calendar me-2"></i> 
+                                                    @job.StartDate.ToString("MMM", CultureInfo.InvariantCulture) - @job.EndDate.ToString("MMM", CultureInfo.InvariantCulture) @job.EndDate.Year
+                                            </small>
+                                        </div>
+                                        <div class="col-6">
+                                            <small>
+                                                <i class="fas fa-home me-2"></i> 
+                                                    @(job.Housing ? "Housing Available" : "No Housing")
+                                            </small>
+                                        </div>
+                                        <div class="col-6">
+                                            <small>
+                                                <i class="fas fa-clock me-2"></i> @job.Hours
+                                            </small>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Job Description -->
+                                <p class="card-text">@job.Description</p>
+
+                                <!-- View Details Button -->
+                                    <a href="#" class="btn btn-outline-primary w-100" onclick="return false;">
+                                    View Details
+                                    </a>
+
+                            </div>
+                        </div>
+                    </div>
+                    }
+        </div>
+    </div>
+</section>
+
+        <nav aria-label="Job listings pagination" class="mt-5">
+          <ul class="pagination justify-content-center">
+            <li class="page-item disabled">
+              <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+            </li>
+            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item">
+              <a class="page-link" href="#">Next</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta-section bg-light py-5">
+      <div class="container text-center">
+        <h2>Ready to Start Your American Adventure?</h2>
+        <p class="lead">Apply now and secure your spot in our Work & Travel program!</p>
+        <a href="/Registration" class="btn btn-primary btn-lg mt-3">Register Today</a>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

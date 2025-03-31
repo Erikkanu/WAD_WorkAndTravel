@@ -1,0 +1,74 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Search Results";
+}
+@model List<WAD_WorkAndTravel.Models.Ticket>
+
+@if (Model.Count == 0)
+{
+        <p>No flights found.</p>
+}
+else
+{
+        <section class="container mt-5 pt-5">
+            <h2 class="text-center mb-4">Search Flights</h2>
+            <form asp-controller="Tickets" asp-action="Search" method="get">
+                <div class="row g-3 justify-content-center">
+                    <div class="col-md-6">
+                        <label for="origin" class="form-label">From</label>
+                        <input type="text" class="form-control" id="origin" name="origin" placeholder="City or Airport">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="destination" class="form-label">To</label>
+                        <input type="text" class="form-control" id="destination" name="destination" placeholder="US City or Airport">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="departure" class="form-label">Departure Date</label>
+                        <input type="date" class="form-control" id="departure" name="departure">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="return" class="form-label">Return Date</label>
+                        <input type="date" class="form-control" id="return" name="returnDate">
+                    </div>
+                    <div class="col-12 text-center mt-4">
+                        <button type="submit" class="btn btn-primary btn-lg px-5">Search Flights</button>
+                    </div>
+                </div>
+            </form>
+        </section>
+
+        <section class="container mt-5 pt-5 mb-5">
+            <h2 class="text-center mb-4">Flight Search Results</h2>
+            <div class="card shadow">
+                <div class="card-body">
+                    <table class="table table-striped mb-4">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Flight Number</th>
+                                <th>Airline</th>
+                                <th>From</th>
+                                <th>To</th>
+                                <th>Departure Date</th>
+                                <th>Arrival Date</th>
+                                <th>Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        @foreach (var ticket in Model)
+                        {
+                                    <tr>
+                                        <td>@ticket.FlightNumber</td>
+                                        <td>@ticket.Airline</td>
+                                        <td>@ticket.DepCity (@ticket.DepAirport)</td>
+                                        <td>@ticket.ArrCity (@ticket.ArrAirport)</td>
+                                        <td>@ticket.DepDate.ToString("yyyy-MM-dd")</td>
+                                        <td>@ticket.ArrDate.ToString("yyyy-MM-dd")</td>
+                                        <td class="fw-bold">$ @ticket.Price</td>
+                                    </tr>
+                        }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+}

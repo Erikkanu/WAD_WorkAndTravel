@@ -1,0 +1,142 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Work And Travel";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Photo Gallery | Work & Travel USA</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+  <main>
+    <!-- Gallery Hero Section -->
+    <section class="page-hero bg-primary text-white">
+      <div class="container py-5">
+        <div class="row py-5">
+          <div class="col-lg-8">
+            <h1>Photo Gallery</h1>
+            <p class="lead">Explore experiences from our past participants and get inspired for your own adventure.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery Filter -->
+    <section class="gallery-filter py-4">
+      <div class="container">
+        <div class="d-flex justify-content-center flex-wrap">
+          <button class="btn btn-outline-primary m-2 filter-btn active" data-filter="all">All Photos</button>
+          <button class="btn btn-outline-primary m-2 filter-btn" data-filter="work">Work Experience</button>
+          <button class="btn btn-outline-primary m-2 filter-btn" data-filter="travel">Travel Adventures</button>
+          <button class="btn btn-outline-primary m-2 filter-btn" data-filter="cultural">Cultural Events</button>
+          <button class="btn btn-outline-primary m-2 filter-btn" data-filter="friends">Friends & Community</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery Grid -->
+    <section class="gallery-grid py-5">
+      <div class="container">
+        <div class="row g-4" id="gallery-container">
+          <!-- Gallery Item 1 -->
+          <div class="col-md-6 col-lg-4 gallery-item" data-category="work">
+            <div class="card gallery-card h-100">
+              <img src="images/hotel_staff.jpg" class="card-img-top" alt="Work Experience">
+              <div class="card-body">
+                <h5 class="card-title">Hotel Staff in Miami</h5>
+                <p class="card-text">Our participants working at a luxury hotel in Miami Beach, Florida.</p>
+                <p class="card-text"><small class="text-muted">Summer 2024</small></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4 gallery-item" data-category="work">
+            <div class="card gallery-card h-100">
+              <img src="images/amusement_park_staff.png" class="card-img-top" alt="Work Experience">
+              <div class="card-body">
+                <h5 class="card-title">Amusement Park Staff</h5>
+                <p class="card-text">Our participants working at an amusement park in Ocean City, Maryland.</p>
+                <p class="card-text"><small class="text-muted">Summer 2024</small></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4 gallery-item" data-category="work">
+            <div class="card gallery-card h-100">
+              <img src="images/canyon.jpg" class="card-img-top" alt="Travel Experience">
+              <div class="card-body">
+                <h5 class="card-title">Beautiful views</h5>
+                <p class="card-text">Former participants visiting the Grand Canyon in Arizona</p>
+                <p class="card-text"><small class="text-muted">Summer 2024</small></p>
+              </div>
+            </div>
+          </div>
+          <!-- Add more gallery items here -->
+        </div>
+
+        <!-- Load More Button -->
+        <div class="text-center mt-5">
+          <button id="load-more" class="btn btn-primary">Load More</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Share Your Experience -->
+    <section class="share-experience py-5 bg-light">
+      <div class="container text-center">
+        <h2>Share Your Experience</h2>
+        <p class="lead">Are you a former participant? Share your photos with us!</p>
+        <div class="row justify-content-center mt-4">
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-body">
+                <form>
+                  <div class="mb-3">
+                    <label for="name" class="form-label">Your Name</label>
+                    <input type="text" class="form-control" id="name" required>
+                  </div>
+                  <div class="mb-3">
+                    <label for="email" class="form-label">Your Email</label>
+                    <input type="email" class="form-control" id="email" required>
+                  </div>
+                  <div class="mb-3">
+                    <label for="year" class="form-label">Program Year</label>
+                    <select class="form-select" id="year" required>
+                      <option value="">Select Year</option>
+                      <option>2024</option>
+                      <option>2023</option>
+                      <option>2022</option>
+                      <option>2021</option>
+                      <option>2020</option>
+                    </select>
+                  </div>
+                  <div class="mb-3">
+                    <label for="photos" class="form-label">Upload Photos</label>
+                    <input class="form-control" type="file" id="photos" multiple>
+                  </div>
+                  <div class="mb-3">
+                    <label for="story" class="form-label">Your Story</label>
+                    <textarea class="form-control" id="story" rows="3"></textarea>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
