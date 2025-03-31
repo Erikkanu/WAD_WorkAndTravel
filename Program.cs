@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using AspNetCoreEFCoreApp.Models;
+using WAD_WorkAndTravel.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 

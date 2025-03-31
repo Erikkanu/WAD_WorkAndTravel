@@ -12,8 +12,8 @@ using WAD_WorkAndTravel.Models;
 namespace WAD_WorkAndTravel.Migrations
 {
     [DbContext(typeof(WAT_Context))]
-    [Migration("20250331151824_TicketsMigration")]
-    partial class TicketsMigration
+    [Migration("20250331213432_RegistrationMigration2")]
+    partial class RegistrationMigration2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -82,6 +82,80 @@ namespace WAD_WorkAndTravel.Migrations
                     b.ToTable("Jobs");
                 });
 
+            modelBuilder.Entity("WAD_WorkAndTravel.Models.RegistrationForm", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
+
+                    b.Property<string>("AdditionalInformation")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateOnly>("DateOfBirth")
+                        .HasColumnType("date");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EnglishLevel")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FieldOfStudy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateOnly>("GraduationDate")
+                        .HasColumnType("date");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Nationality")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Plan")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateOnly>("PreferredStartDate")
+                        .HasColumnType("date");
+
+                    b.Property<string>("ProgramDuration")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("University")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("WorkExperience")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("YearOfStudy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("id");
+
+                    b.ToTable("RegistrationForms");
+                });
+
             modelBuilder.Entity("WAD_WorkAndTravel.Models.Ticket", b =>
                 {
                     b.Property<int>("TicketID")
@@ -119,6 +193,9 @@ namespace WAD_WorkAndTravel.Migrations
                     b.Property<string>("FlightNumber")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Price")
+                        .HasColumnType("int");
 
                     b.HasKey("TicketID");
 

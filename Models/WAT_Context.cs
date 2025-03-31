@@ -2,9 +2,8 @@
 using Microsoft.Extensions.Hosting;
 using Microsoft.Identity.Client;
 using System.Reflection.Metadata;
-using WAD_WorkAndTravel.Models;
 
-namespace AspNetCoreEFCoreApp.Models
+namespace WAD_WorkAndTravel.Models
 {
     public class WAT_Context : DbContext
     {
@@ -13,6 +12,6 @@ namespace AspNetCoreEFCoreApp.Models
         { }
         public DbSet<Job>? Jobs { get; set; }
         public DbSet<Ticket>? Tickets { get; set; }
-        public DbSet<RegistrationForm>? Registrations { get; set; }
+        public DbSet<RegistrationForm>? RegistrationForms { get; set; }
     }
 }

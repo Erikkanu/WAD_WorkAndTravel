@@ -1,5 +1,4 @@
-﻿using AspNetCoreEFCoreApp.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using WAD_WorkAndTravel.Models;
 
 namespace WAD_WorkAndTravel.Controllers
@@ -17,22 +16,20 @@ namespace WAD_WorkAndTravel.Controllers
         {
             return View(new RegistrationForm());  // Pass an empty model
         }
-
         [HttpPost]
         public IActionResult SubmitForm(RegistrationForm form)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                _context.Registrations.Add(form);
-                _context.SaveChanges();
-                return RedirectToAction("Success");  // Redirect to a success page
+                return View("Index", form); // Return form with validation errors if invalid
             }
-            return View("Index", form);  // If invalid, return to form
-        }
 
-        public IActionResult Success()
-        {
-            return View();
+            _context.RegistrationForms.Add(form);
+            _context.SaveChanges();
+
+            ViewBag.SuccessMessage = "Your application has been successfully submitted!";
+
+            return View("Index", new RegistrationForm()); // Clear form by passing a new instance
         }
     }
 }

@@ -3,7 +3,7 @@
 *@
 @{
 	Layout = "~/Views/Shared/_Layout.cshtml";
-	ViewBag.Title = "Work And Travel";
+	ViewBag.Title = "Registration Form";
 }
 @model WAD_WorkAndTravel.Models.RegistrationForm
 
@@ -16,6 +16,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="/css/site.css">
+  <script src="~/js/registrationScript.js"></script>
 </head>
 <body>
   <main>
@@ -33,86 +34,83 @@
 
     <!-- Program Plans -->
     <section class="program-plans py-5">
-      <div class="container">
-        <h2 class="text-center mb-5">Choose Your Plan</h2>
-        <div class="row g-4">
-          <!-- Basic Plan -->
-          <div class="col-md-4">
-            <div class="card pricing-card h-100">
-              <div class="card-header text-center bg-light">
-                <h3 class="my-0">Basic Plan</h3>
-              </div>
-              <div class="card-body">
-                <h2 class="card-title pricing-card-title text-center">$699 <small class="text-muted">/ program</small></h2>
-                <ul class="list-unstyled mt-4 mb-5">
-                  <li class="mb-2"><i class="fas fa-check text-success me-2"></i> J-1 visa sponsorship</li>
-                  <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Job placement assistance</li>
-                  <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Pre-departure orientation</li>
-                  <li class="mb-2"><i class="fas fa-check text-success me-2"></i> SEVIS fee included</li>
-                  <li class="mb-2"><i class="fas fa-check text-success me-2"></i> 24/7 support during program</li>
-                  <li class="mb-2 text-muted"><i class="fas fa-times text-danger me-2"></i> Housing assistance</li>
-                  <li class="mb-2 text-muted"><i class="fas fa-times text-danger me-2"></i> Travel insurance</li>
-                  <li class="mb-2 text-muted"><i class="fas fa-times text-danger me-2"></i> Airport pickup</li>
-                </ul>
-                <button type="button" class="w-100 btn btn-outline-primary" onclick="selectPlan('Basic')">Select Plan</button>
-              </div>
-            </div>
+  <div class="container">
+    <h2 class="text-center mb-5">Choose Your Plan</h2>
+    <div class="row g-4">
+      <!-- Basic Plan -->
+      <div class="col-md-4">
+        <div class="card pricing-card h-100">
+          <div class="card-header text-center bg-light">
+            <h3 class="my-0">Basic Plan</h3>
           </div>
-
-          <!-- Standard Plan -->
-          <div class="col-md-4">
-            <div class="card pricing-card h-100 border-primary">
-              <div class="card-header text-center bg-primary text-white position-relative">
-                <h3 class="my-0">Standard Plan</h3>
-                <span class="badge bg-warning text-dark position-absolute top-0 end-0 translate-middle-x" style="z-index: 1;">Popular</span>
-              </div>
-              <div class="card-body">
-                <h2 class="card-title pricing-card-title text-center">$899 <small class="text-muted">/ program</small></h2>
-                <ul class="list-unstyled mt-4 mb-5">
-                  <li class="mb-2"><i class="fas fa-check text-success me-2"></i> J-1 visa sponsorship</li>
-                  <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Job placement assistance</li>
-                  <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Pre-departure orientation</li>
-                  <li class="mb-2"><i class="fas fa-check text-success me-2"></i> SEVIS fee included</li>
-                  <li class="mb-2"><i class="fas fa-check text-success me-2"></i> 24/7 support during program</li>
-                  <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Housing assistance</li>
-                  <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Travel insurance</li>
-                  <li class="mb-2 text-muted"><i class="fas fa-times text-danger me-2"></i> Airport pickup</li>
-                </ul>
-                <button type="button" class="w-100 btn btn-primary" onclick="selectPlan('Standard')">Select Plan</button>
-              </div>
-            </div>
-          </div>
-
-
-          <!-- Premium Plan -->
-          <div class="col-md-4">
-            <div class="card pricing-card h-100">
-              <div class="card-header text-center bg-light">
-                <h3 class="my-0">Premium Plan</h3>
-              </div>
-              <div class="card-body">
-                <h2 class="card-title pricing-card-title text-center">$1,199 <small class="text-muted">/ program</small></h2>
-                <ul class="list-unstyled mt-4 mb-5">
-                  <li class="mb-2"><i class="fas fa-check text-success me-2"></i> J-1 visa sponsorship</li>
-                  <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Priority job placement</li>
-                  <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Extended pre-departure orientation</li>
-                  <li class="mb-2"><i class="fas fa-check text-success me-2"></i> SEVIS fee included</li>
-                  <li class="mb-2"><i class="fas fa-check text-success me-2"></i> 24/7 premium support</li>
-                  <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Guaranteed housing</li>
-                  <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Premium travel insurance</li>
-                  <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Airport pickup & transfer</li>
-                </ul>
-                <button type="button" class="w-100 btn btn-outline-primary" onclick="selectPlan('Premium')">Select Plan</button>
-              </div>
-            </div>
+          <div class="card-body">
+            <h2 class="card-title pricing-card-title text-center">$699 <small class="text-muted">/ program</small></h2>
+            <ul class="list-unstyled mt-4 mb-5">
+              <li class="mb-2"><i class="fas fa-check text-success me-2"></i> J-1 visa sponsorship</li>
+              <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Job placement assistance</li>
+              <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Pre-departure orientation</li>
+              <li class="mb-2"><i class="fas fa-check text-success me-2"></i> SEVIS fee included</li>
+              <li class="mb-2"><i class="fas fa-check text-success me-2"></i> 24/7 support during program</li>
+              <li class="mb-2 text-muted"><i class="fas fa-times text-danger me-2"></i> Housing assistance</li>
+              <li class="mb-2 text-muted"><i class="fas fa-times text-danger me-2"></i> Travel insurance</li>
+              <li class="mb-2 text-muted"><i class="fas fa-times text-danger me-2"></i> Airport pickup</li>
+            </ul>
+            <button type="button" class="w-100 btn btn-outline-primary" data-plan="Basic">Select Plan</button>
           </div>
         </div>
       </div>
-    </section>
 
-    <!-- Registration Form -->
+      <!-- Standard Plan -->
+      <div class="col-md-4">
+        <div class="card pricing-card h-100 border-primary">
+          <div class="card-header text-center bg-primary text-white position-relative">
+            <h3 class="my-0">Standard Plan</h3>
+            <span class="badge bg-warning text-dark position-absolute top-0 end-0 translate-middle-x" style="z-index: 1;">Popular</span>
+          </div>
+          <div class="card-body">
+            <h2 class="card-title pricing-card-title text-center">$899 <small class="text-muted">/ program</small></h2>
+            <ul class="list-unstyled mt-4 mb-5">
+              <li class="mb-2"><i class="fas fa-check text-success me-2"></i> J-1 visa sponsorship</li>
+              <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Job placement assistance</li>
+              <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Pre-departure orientation</li>
+              <li class="mb-2"><i class="fas fa-check text-success me-2"></i> SEVIS fee included</li>
+              <li class="mb-2"><i class="fas fa-check text-success me-2"></i> 24/7 support during program</li>
+              <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Housing assistance</li>
+              <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Travel insurance</li>
+              <li class="mb-2 text-muted"><i class="fas fa-times text-danger me-2"></i> Airport pickup</li>
+            </ul>
+            <button type="button" class="w-100 btn btn-outline-primary" data-plan="Standard">Select Plan</button>
+          </div>
+        </div>
+      </div>
 
+      <!-- Premium Plan -->
+      <div class="col-md-4">
+        <div class="card pricing-card h-100">
+          <div class="card-header text-center bg-light">
+            <h3 class="my-0">Premium Plan</h3>
+          </div>
+          <div class="card-body">
+            <h2 class="card-title pricing-card-title text-center">$1,199 <small class="text-muted">/ program</small></h2>
+            <ul class="list-unstyled mt-4 mb-5">
+              <li class="mb-2"><i class="fas fa-check text-success me-2"></i> J-1 visa sponsorship</li>
+              <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Priority job placement</li>
+              <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Extended pre-departure orientation</li>
+              <li class="mb-2"><i class="fas fa-check text-success me-2"></i> SEVIS fee included</li>
+              <li class="mb-2"><i class="fas fa-check text-success me-2"></i> 24/7 premium support</li>
+              <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Guaranteed housing</li>
+              <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Premium travel insurance</li>
+              <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Airport pickup & transfer</li>
+            </ul>
+            <button type="button" class="w-100 btn btn-outline-primary" data-plan="Premium">Select Plan</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
+<!-- Registration Form -->
 <section class="registration-form py-5 bg-light">
     <div class="container">
         <h2 class="text-center mb-5">Registration Form</h2>
@@ -120,8 +118,9 @@
             <div class="col-lg-8">
                 <div class="card">
                     <div class="card-body p-4">
-                        <form asp-action="SubmitForm" asp-controller="Registration" method="post">
-                            <input type="hidden" asp-for="Plan" />
+                        <form id="registrationForm" asp-controller="Registration" asp-action="SubmitForm" method="post">
+                        <!-- Hidden field to store selected plan -->
+                        <input type="hidden" id="Plan" name="Plan" value="">
 
                             <div class="mb-4">
                                 <h4>Personal Information</h4>
@@ -144,7 +143,8 @@
                                     </div>
                                     <div class="col-md-6">
                                         <label for="dateOfBirth" class="form-label">Date of Birth*</label>
-                                        <input type="date" class="form-control" asp-for="DateOfBirth" required>
+                                        <input type="date" class="form-control" asp-for="DateOfBirth" 
+                                        value="@DateTime.Now.AddYears(-20).ToString("yyyy-MM-dd")"required>
                                     </div>
                                     <div class="col-md-6">
                                         <label for="nationality" class="form-label">Nationality*</label>
@@ -178,7 +178,8 @@
                                     </div>
                                     <div class="col-md-6">
                                         <label for="graduationDate" class="form-label">Expected Graduation Date*</label>
-                                        <input type="month" class="form-control" asp-for="GraduationDate" required>
+                                        <input type="month" class="form-control" asp-for="GraduationDate" 
+                                        value="@DateTime.Now.ToString("yyyy-MM-dd")" required>
                                     </div>
                                 </div>
                             </div>
@@ -189,7 +190,8 @@
                                 <div class="row g-3">
                                     <div class="col-md-6">
                                         <label for="preferredStartDate" class="form-label">Preferred Start Date*</label>
-                                        <input type="month" class="form-control" asp-for="PreferredStartDate" required>
+                                        <input type="month" class="form-control" asp-for="PreferredStartDate" 
+                                        value="@DateTime.Now.AddYears(-20).ToString("yyyy-MM-dd")" required>
                                     </div>
                                     <div class="col-md-6">
                                         <label for="programDuration" class="form-label">Program Duration*</label>
@@ -202,7 +204,13 @@
                                     </div>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary w-100">Submit Registration</button>
+                            <button type="submit" class="btn btn-primary w-100" id="submitButton" >Submit Application</button>
+                                    @if (!string.IsNullOrEmpty(ViewBag.SuccessMessage))
+                                    {
+                                    <div class="alert alert-success" role="alert">
+                                            @ViewBag.SuccessMessage
+                                    </div>
+                                    }
                         </form>
                     </div>
                 </div>
@@ -210,26 +218,6 @@
         </div>
     </div>
 </section>
-
-
-    <!-- Modal for Terms and Conditions -->
-    <div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-scrollable">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="termsModalLabel">Terms and Conditions</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <!-- Terms and Conditions content -->
-            <p>Terms and conditions content goes here...</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          </div>
-        </div>
-      </div>
-    </div>
   </main>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="js/main.js"></script>

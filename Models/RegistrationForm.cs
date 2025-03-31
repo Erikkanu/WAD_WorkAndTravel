@@ -2,7 +2,7 @@
 {
     public class RegistrationForm
     {
-        public int FormID { get; set; }
+        public int id { get; set; }
         public string Plan { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -16,9 +16,6 @@
         public DateOnly GraduationDate { get; set; }
         public DateOnly PreferredStartDate { get; set; }
         public string ProgramDuration { get; set; }
-        public string EnglishLevel { get; set; }
-        public string WorkExperience { get; set; }
-        public string AdditionalInformation { get; set; }
 
     }
 }
