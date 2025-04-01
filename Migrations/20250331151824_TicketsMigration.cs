@@ -24,8 +24,7 @@ namespace WAD_WorkAndTravel.Migrations
                     FlightNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Airline = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DepDate = table.Column<DateOnly>(type: "date", nullable: false),
-                    ArrDate = table.Column<DateOnly>(type: "date", nullable: false),
-                    Price = table.Column<int>(type: "int", nullable: false)
+                    ArrDate = table.Column<DateOnly>(type: "date", nullable: false)
                 },
                 constraints: table =>
                 {
