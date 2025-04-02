@@ -115,52 +115,30 @@
         </div>
       </div>
     </section>
-
+    @model List<Testimonial>
     <!-- Testimonials -->
     <section class="testimonials py-5 bg-light">
         <div class="container">
-          <h2 class="text-center mb-5">Success Stories</h2>
-          <div class="row">
-            <div class="col-lg-4">
-              <div class="testimonial-card p-4 mb-4">
-                <p class="quote">"The Work & Travel program changed my life! I worked at a resort in California and made friends from all over the world."</p>
-                <div class="d-flex align-items-center">
-                  <img src="images/portrait1.jpg" alt="Testimonial" class="rounded-circle me-3" width="60">
-                  <div>
-                    <h5 class="mb-0">Maria S.</h5>
-                    <small>Summer 2024</small>
-                  </div>
-                </div>
-              </div>
+            <h2 class="text-center mb-5">Success Stories</h2>
+            <div class="row">
+                        @foreach (var testimonial in Model)
+                        {
+                        <div class="col-lg-4">
+                            <div class="testimonial-card p-4 mb-4">
+                                <p class="quote">"@testimonial.Description"</p>
+                                <div class="d-flex align-items-center">
+                                    <img src="@Url.Content(testimonial.imagePath)" alt="Testimonial" class="rounded-circle me-3" width="60">
+                                    <div>
+                                        <h5 class="mb-0">@testimonial.Author</h5>
+                                        <small>@testimonial.Date</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        }
             </div>
-
-            <div class="col-lg-4">
-              <div class="testimonial-card p-4 mb-4">
-                <p class="quote">"This was an opportunity like no other! I managed to have the summer of my lifetime. I also made a lot of money!"</p>
-                <div class="d-flex align-items-center">
-                  <img src="images/portrait2.jpg" alt="Testimonial" class="rounded-circle me-3" width="60">
-                  <div>
-                    <h5 class="mb-0">Andrei B.</h5>
-                    <small>Summer 2024</small>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-4">
-              <div class="testimonial-card p-4 mb-4">
-                <p class="quote">"I'm glad I gathered the courage to go on such a journey. I'm really pleased of how everything turned out and I will for sure come back"</p>
-                <div class="d-flex align-items-center">
-                  <img src="images/portrait3.jpg" alt="Testimonial" class="rounded-circle me-3" width="60">
-                  <div>
-                    <h5 class="mb-0">Corina P.</h5>
-                    <small>Summer 2024</small>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Add more testimonials here -->
-          </div>
+        </div>
+    </section>
           <div class="text-center mt-4">
             <a href="/Gallery" class="btn btn-outline-primary">See More Stories</a>
           </div>

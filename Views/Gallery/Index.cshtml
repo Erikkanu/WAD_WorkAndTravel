@@ -3,7 +3,7 @@
 *@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewBag.Title = "Work And Travel";
+    ViewBag.Title = "Gallery";
 }
 
 <!DOCTYPE html>
@@ -42,47 +42,24 @@
         </div>
       </div>
     </section>
-
-    <!-- Gallery Grid -->
-    <section class="gallery-grid py-5">
-      <div class="container">
-        <div class="row g-4" id="gallery-container">
-          <!-- Gallery Item 1 -->
-          <div class="col-md-6 col-lg-4 gallery-item" data-category="work">
+<!-- Gallery Grid -->
+<section class="gallery-grid py-5">
+  <div class="container">
+    <div class="row g-4" id="gallery-container">
+       @foreach (var item in Model)
+       {
             <div class="card gallery-card h-100">
-              <img src="images/hotel_staff.jpg" class="card-img-top" alt="Work Experience">
+              <img src="@item.imagePath" class="card-img-top" alt="@item.Title">
               <div class="card-body">
-                <h5 class="card-title">Hotel Staff in Miami</h5>
-                <p class="card-text">Our participants working at a luxury hotel in Miami Beach, Florida.</p>
-                <p class="card-text"><small class="text-muted">Summer 2024</small></p>
+                <h5 class="card-title">@item.Title</h5>
+                <p class="card-text">@item.Description</p>
+                <p class="card-text"><small class="text-muted">@item.Date</small></p>
               </div>
             </div>
-          </div>
-
-          <div class="col-md-6 col-lg-4 gallery-item" data-category="work">
-            <div class="card gallery-card h-100">
-              <img src="images/amusement_park_staff.png" class="card-img-top" alt="Work Experience">
-              <div class="card-body">
-                <h5 class="card-title">Amusement Park Staff</h5>
-                <p class="card-text">Our participants working at an amusement park in Ocean City, Maryland.</p>
-                <p class="card-text"><small class="text-muted">Summer 2024</small></p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-6 col-lg-4 gallery-item" data-category="work">
-            <div class="card gallery-card h-100">
-              <img src="images/canyon.jpg" class="card-img-top" alt="Travel Experience">
-              <div class="card-body">
-                <h5 class="card-title">Beautiful views</h5>
-                <p class="card-text">Former participants visiting the Grand Canyon in Arizona</p>
-                <p class="card-text"><small class="text-muted">Summer 2024</small></p>
-              </div>
-            </div>
-          </div>
-          <!-- Add more gallery items here -->
-        </div>
-
+        }
+    </div>
+  </div>
+</section>
         <!-- Load More Button -->
         <div class="text-center mt-5">
           <button id="load-more" class="btn btn-primary">Load More</button>

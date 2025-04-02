@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using WAD_WorkAndTravel.Models;
 
 namespace WAD_WorkAndTravel.Controllers
 {
+    [Authorize]  // Protect the entire controller
     public class RegistrationController : Controller
     {
         private readonly WAT_Context _context;
@@ -16,6 +18,7 @@ namespace WAD_WorkAndTravel.Controllers
         {
             return View(new RegistrationForm());  // Pass an empty model
         }
+
         [HttpPost]
         public IActionResult SubmitForm(RegistrationForm form)
         {

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WAD_WorkAndTravel.Models;
 
@@ -11,9 +12,11 @@ using WAD_WorkAndTravel.Models;
 namespace WAD_WorkAndTravel.Migrations
 {
     [DbContext(typeof(WAT_Context))]
-    partial class WAT_ContextModelSnapshot : ModelSnapshot
+    [Migration("20250402002717_GalleryMigration")]
+    partial class GalleryMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
