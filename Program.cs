@@ -1,12 +1,15 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using WAD_WorkAndTravel.Models;
+using WAD_WorkAndTravel.Repositories;
 using WAD_WorkAndTravel.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
+builder.Services.AddScoped<IJobService, JobService>();
 builder.Services.AddDbContext<WAT_Context>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("WorkAndTravelDb")));
 
 // Register AuthService
