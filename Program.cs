@@ -8,8 +8,23 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
+
 builder.Services.AddScoped<IJobService, JobService>();
+builder.Services.AddScoped<ITicketService, TicketService>();
+builder.Services.AddScoped<ITestimonialService, TestimonialService>();
+//builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IRegistrationFormService, RegistrationFormService>();
+builder.Services.AddScoped<IGalleryPostService, GalleryPostService>();
+
+
+builder.Services.AddScoped<IJobRepository, JobRepository>();
+builder.Services.AddScoped<ITicketRepository, TicketRepository>();
+builder.Services.AddScoped<ITestimonialRepository, TestimonialRepository>();
+//builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IRegistrationFormRepository, RegistrationFormRepository>();
+builder.Services.AddScoped<IGalleryPostRepository, GalleryPostRepository>();
+builder.Services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
+
 builder.Services.AddDbContext<WAT_Context>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("WorkAndTravelDb")));
 
 // Register AuthService
