@@ -9,5 +9,6 @@ namespace WAD_WorkAndTravel.Services
         void CreateTicket(Ticket Ticket);
         void UpdateTicket(Ticket Ticket);
         void DeleteTicket(Ticket Ticket);
+        IEnumerable<Ticket> SearchTickets(string origin, string destination, DateOnly? departure, DateOnly? returnDate);
     }
 }

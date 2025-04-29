@@ -20,7 +20,7 @@ builder.Services.AddScoped<IGalleryPostService, GalleryPostService>();
 builder.Services.AddScoped<IJobRepository, JobRepository>();
 builder.Services.AddScoped<ITicketRepository, TicketRepository>();
 builder.Services.AddScoped<ITestimonialRepository, TestimonialRepository>();
-//builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IRegistrationFormRepository, RegistrationFormRepository>();
 builder.Services.AddScoped<IGalleryPostRepository, GalleryPostRepository>();
 builder.Services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();

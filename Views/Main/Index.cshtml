@@ -116,13 +116,16 @@
       </div>
     </section>
     @model List<Testimonial>
-    <!-- Testimonials -->
-    <section class="testimonials py-5 bg-light">
-        <div class="container">
-            <h2 class="text-center mb-5">Success Stories</h2>
-            <div class="row">
-                        @foreach (var testimonial in Model)
-                        {
+        <!-- Testimonials -->
+        <section class="testimonials py-5 bg-light">
+            <div class="container">
+                <div class="text-center mb-3">
+                    <a href="/Main/Create" class="btn btn-primary">Add Testimonial</a>
+                </div>
+                <h2 class="text-center mb-5">Success Stories</h2>
+                <div class="row">
+                    @foreach (var testimonial in Model)
+                    {
                         <div class="col-lg-4">
                             <div class="testimonial-card p-4 mb-4">
                                 <p class="quote">"@testimonial.Description"</p>
@@ -133,12 +136,23 @@
                                         <small>@testimonial.Date</small>
                                     </div>
                                 </div>
+                                <div class="mt-3 d-flex justify-content-end">
+                                    <a href="@Url.Action("Details", "Main", new { id = testimonial.id })" class="btn btn-outline-primary me-2 btn-sm">
+                                        <i class="bi bi-eye"></i> View
+                                    </a>
+                                    <a href="@Url.Action("Edit", "Main", new { id = testimonial.id })" class="btn btn-outline-secondary me-2 btn-sm">
+                                        <i class="bi bi-pencil"></i> Edit
+                                    </a>
+                                    <a href="@Url.Action("Delete", "Main", new { id = testimonial.id })" class="btn btn-outline-danger me-2 btn-sm">
+                                        <i class="bi bi-trash"></i> Delete
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                        }
+                    }
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
           <div class="text-center mt-4">
             <a href="/Gallery" class="btn btn-outline-primary">See More Stories</a>
           </div>

@@ -1,0 +1,113 @@
+﻿@model WAD_WorkAndTravel.Models.Ticket
+
+@{
+    ViewData["Title"] = "Edit Ticket";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="container mt-5 pt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-warning">
+                    <h2 class="text-center mb-0">Edit Flight</h2>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Edit">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="TicketID" />
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="FlightNumber" class="control-label">Flight Number</label>
+                                    <input asp-for="FlightNumber" class="form-control" />
+                                    <span asp-validation-for="FlightNumber" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Airline" class="control-label">Airline</label>
+                                    <input asp-for="Airline" class="form-control" />
+                                    <span asp-validation-for="Airline" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="DepCity" class="control-label">Departure City</label>
+                                    <input asp-for="DepCity" class="form-control" />
+                                    <span asp-validation-for="DepCity" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="DepAirport" class="control-label">Departure Airport</label>
+                                    <input asp-for="DepAirport" class="form-control" />
+                                    <span asp-validation-for="DepAirport" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="ArrCity" class="control-label">Arrival City</label>
+                                    <input asp-for="ArrCity" class="form-control" />
+                                    <span asp-validation-for="ArrCity" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="ArrAirport" class="control-label">Arrival Airport</label>
+                                    <input asp-for="ArrAirport" class="form-control" />
+                                    <span asp-validation-for="ArrAirport" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="DepDate" class="control-label">Departure Date</label>
+                                    <input asp-for="DepDate" class="form-control" type="date" />
+                                    <span asp-validation-for="DepDate" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="ArrDate" class="control-label">Arrival Date</label>
+                                    <input asp-for="ArrDate" class="form-control" type="date" />
+                                    <span asp-validation-for="ArrDate" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Price" class="control-label">Price ($)</label>
+                                    <input asp-for="Price" class="form-control" type="number" step="0.01" />
+                                    <span asp-validation-for="Price" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group text-center mt-4">
+                            <button type="submit" class="btn btn-warning btn-lg px-5">Save</button>
+                            <a asp-action="Search" class="btn btn-secondary btn-lg px-5 ms-2">Back to List</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

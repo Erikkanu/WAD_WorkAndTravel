@@ -1,52 +1,122 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+using System;
 using System.Linq;
-using System.Threading.Tasks;
 using WAD_WorkAndTravel.Models;
+using WAD_WorkAndTravel.Services;
 
 namespace WAD_WorkAndTravel.Controllers
 {
     public class TicketsController : Controller
     {
-        private readonly WAT_Context _context;
+        private readonly ITicketService _ticketService;
 
-        public TicketsController(WAT_Context context)
+        public TicketsController(ITicketService ticketService)
         {
-            _context = context;
+            _ticketService = ticketService;
         }
 
+        // GET: Tickets
         public IActionResult Index()
+        {
+            var tickets = _ticketService.GetAllTickets();
+            return View(tickets);
+        }
+
+        // GET: Tickets/Search
+        public IActionResult Search(string origin, string destination, DateOnly? departure, DateOnly? returnDate)
+        {
+            var tickets = _ticketService.SearchTickets(origin, destination, departure, returnDate);
+            return View("SearchResults", tickets);
+        }
+
+        // GET: Tickets/Details/5
+        public IActionResult Details(int id)
+        {
+            var ticket = _ticketService.GetTicketById(id);
+
+            if (ticket == null)
+            {
+                return NotFound();
+            }
+
+            return View(ticket);
+        }
+
+        // GET: Tickets/Create
+        public IActionResult Create()
         {
             return View();
         }
 
-        // Handles the flight search
-        public async Task<IActionResult> Search(string origin, string destination, DateOnly? departure, DateOnly? returnDate)
+        // POST: Tickets/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create([Bind("FlightNumber,Airline,DepCity,DepAirport,ArrCity,ArrAirport,DepDate,ArrDate,Price")] Ticket ticket)
         {
-            var query = _context.Tickets.AsQueryable();
-
-            if (!string.IsNullOrEmpty(origin))
+            if (ModelState.IsValid)
             {
-                query = query.Where(t => t.DepCity.Contains(origin) || t.DepAirport.Contains(origin));
+                _ticketService.CreateTicket(ticket);
+                return RedirectToAction(nameof(Index));
+            }
+            return View(ticket);
+        }
+
+        // GET: Tickets/Edit/5
+        public IActionResult Edit(int id)
+        {
+            var ticket = _ticketService.GetTicketById(id);
+
+            if (ticket == null)
+            {
+                return NotFound();
             }
 
-            if (!string.IsNullOrEmpty(destination))
+            return View(ticket);
+        }
+
+        // POST: Tickets/Edit/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(int id, [Bind("TicketID,FlightNumber,Airline,DepCity,DepAirport,ArrCity,ArrAirport,DepDate,ArrDate,Price")] Ticket ticket)
+        {
+            if (id != ticket.TicketID)
             {
-                query = query.Where(t => t.ArrCity.Contains(destination) || t.ArrAirport.Contains(destination));
+                return NotFound();
             }
 
-            if (departure.HasValue)
+            if (ModelState.IsValid)
             {
-                query = query.Where(t => t.DepDate == departure.Value);
+                _ticketService.UpdateTicket(ticket);
+                return RedirectToAction(nameof(Index));
+            }
+            return View(ticket);
+        }
+
+        // GET: Tickets/Delete/5
+        public IActionResult Delete(int id)
+        {
+            var ticket = _ticketService.GetTicketById(id);
+
+            if (ticket == null)
+            {
+                return NotFound();
             }
 
-            if (returnDate.HasValue)
+            return View(ticket);
+        }
+
+        // POST: Tickets/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteConfirmed(int id)
+        {
+            var ticket = _ticketService.GetTicketById(id);
+            if (ticket != null)
             {
-                query = query.Where(t => t.ArrDate == returnDate.Value);
+                _ticketService.DeleteTicket(ticket);
             }
 
-            var ticket = await query.ToListAsync();
-            return View("SearchResults", ticket);
+            return RedirectToAction(nameof(Index));
         }
     }
 }

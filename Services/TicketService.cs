@@ -1,5 +1,8 @@
 ﻿using WAD_WorkAndTravel.Models;
 using WAD_WorkAndTravel.Repositories;
+using System.Linq;
+using System.Collections.Generic;
+using System;
 
 namespace WAD_WorkAndTravel.Services
 {
@@ -38,6 +41,33 @@ namespace WAD_WorkAndTravel.Services
         {
             _repository.Ticket.Delete(Ticket);
             _repository.Save();
+        }
+
+        public IEnumerable<Ticket> SearchTickets(string origin, string destination, DateOnly? departure, DateOnly? returnDate)
+        {
+            var query = _repository.Ticket.FindAll();
+
+            if (!string.IsNullOrEmpty(origin))
+            {
+                query = query.Where(t => t.DepCity.Contains(origin) || t.DepAirport.Contains(origin));
+            }
+
+            if (!string.IsNullOrEmpty(destination))
+            {
+                query = query.Where(t => t.ArrCity.Contains(destination) || t.ArrAirport.Contains(destination));
+            }
+
+            if (departure.HasValue)
+            {
+                query = query.Where(t => t.DepDate == departure.Value);
+            }
+
+            if (returnDate.HasValue)
+            {
+                query = query.Where(t => t.ArrDate == returnDate.Value);
+            }
+
+            return query.ToList();
         }
     }
 }

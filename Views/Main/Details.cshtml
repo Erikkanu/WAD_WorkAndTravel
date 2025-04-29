@@ -1,0 +1,56 @@
+﻿@model WAD_WorkAndTravel.Models.Testimonial
+
+@{
+    ViewData["Title"] = "Testimonial Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container pt-5 mt-5 py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-info text-white">
+                    <h4 class="mb-0">Testimonial Details</h4>
+                </div>
+                <div class="card-body">
+                    <div class="text-center mb-4">
+                        <img src="@Url.Content(Model.imagePath)" alt="@Model.Author" class="rounded-circle" width="150" height="150" style="object-fit: cover;">
+                    </div>
+
+                    <div class="mb-4">
+                        <h5 class="testimonial-quote text-center fs-5 fst-italic">
+                            "@Model.Description"
+                        </h5>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <strong>Author:</strong>
+                                <p class="lead">@Model.Author</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <strong>Date:</strong>
+                                <p>@Model.Date</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-between mt-4">
+                        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                        <div>
+                            <a asp-action="Edit" asp-route-id="@Model.id" class="btn btn-warning me-2">
+                                <i class="bi bi-pencil"></i> Edit
+                            </a>
+                            <a asp-action="Delete" asp-route-id="@Model.id" class="btn btn-danger">
+                                <i class="bi bi-trash"></i> Delete
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

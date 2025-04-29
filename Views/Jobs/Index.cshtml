@@ -74,6 +74,10 @@
                         <div class="col-md-2 d-flex align-items-end">
                             <a href="/Jobs/Index" class="btn btn-primary w-100">Clear Filters</a>
                         </div>
+                        <div class="col-md-2 d-flex align-items-end">
+                            <a href="/Jobs/Create" class="btn btn-success w-100">Create Job</a>
+                        </div>
+
                     </div>
                 </form>
             </div>
@@ -135,10 +139,23 @@
                                 <!-- Job Description -->
                                 <p class="card-text">@job.Description</p>
 
-                                <!-- View Details Button -->
-                                    <a asp-controller="Jobs" asp-action="Details" asp-route-id="@job.JobID" class="btn btn-outline-primary w-100">
-                                        View Details
-                                    </a>
+                                    <div class="row g-2 mt-3">
+                                        <div class="col-4">
+                                            <a asp-controller="Jobs" asp-action="Details" asp-route-id="@job.JobID" class="btn btn-outline-primary w-100 btn-sm">
+                                                View
+                                            </a>
+                                        </div>
+                                        <div class="col-4">
+                                            <a asp-controller="Jobs" asp-action="Edit" asp-route-id="@job.JobID" class="btn btn-outline-secondary w-100 btn-sm">
+                                                Edit
+                                            </a>
+                                        </div>
+                                        <div class="col-4">
+                                            <form asp-controller="Jobs" asp-action="Delete" asp-route-id="@job.JobID" method="post" onsubmit="return confirm('Are you sure you want to delete this job?');">
+                                                <button type="submit" class="btn btn-outline-danger w-100 btn-sm">Delete</button>
+                                            </form>
+                                        </div>
+                                    </div>
 
 
                             </div>

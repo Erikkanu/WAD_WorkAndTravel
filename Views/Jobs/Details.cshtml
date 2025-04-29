@@ -1,0 +1,43 @@
+﻿@model WAD_WorkAndTravel.Models.Job
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Job Details";
+}
+
+<div class="container pt-5 mt-5 py-5">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card">
+                <div class="card-body">
+
+                    <!-- Header -->
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h2>@Model.Title</h2>
+                        <span class="badge bg-success">@Model.Category</span>
+                    </div>
+                    <h5 class="text-muted">@Model.Company – @Model.Location, @Model.State</h5>
+
+                    <!-- Logo -->
+                    <div class="text-center my-4">
+                        <img src="@Model.LogoPath" alt="Company Logo" height="80" onerror="this.src='/images/default-logo.png'">
+                    </div>
+
+                    <!-- Details -->
+                    <ul class="list-group list-group-flush mb-4">
+                        <li class="list-group-item"><strong>Wage:</strong> $@Model.Wage/hour</li>
+                        <li class="list-group-item"><strong>Hours:</strong> @Model.Hours</li>
+                        <li class="list-group-item"><strong>Housing:</strong> @(Model.Housing ? "Available" : "Not Available")</li>
+                        <li class="list-group-item">
+                            <strong>Dates:</strong> @Model.StartDate.ToString("MMMM dd") - @Model.EndDate.ToString("MMMM dd, yyyy")
+                        </li>
+                    </ul>
+
+                    <!-- Description -->
+                    <p>@Model.Description</p>
+
+                    <a href="@Url.Action("Index", "Jobs")" class="btn btn-secondary mt-3">Back to Jobs</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
