@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using WAD_WorkAndTravel.Models;
 using WAD_WorkAndTravel.Services;
@@ -56,6 +57,7 @@ namespace WAD_WorkAndTravel.Controllers
         }
 
         // GET: Jobs/Create
+        [Authorize(Roles = "Administrator")]
         public IActionResult Create()
         {
             return View();
@@ -64,6 +66,7 @@ namespace WAD_WorkAndTravel.Controllers
         // POST: Jobs/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public IActionResult Create(Job job)
         {
             if (ModelState.IsValid)
@@ -75,6 +78,7 @@ namespace WAD_WorkAndTravel.Controllers
         }
 
         // GET: Jobs/Edit/5
+        [Authorize(Roles = "Administrator")]
         public IActionResult Edit(int? id)
         {
             if (id == null) return NotFound();
@@ -88,6 +92,7 @@ namespace WAD_WorkAndTravel.Controllers
         // POST: Jobs/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public IActionResult Edit(int id, Job job)
         {
             if (id != job.JobID) return NotFound();
@@ -107,6 +112,7 @@ namespace WAD_WorkAndTravel.Controllers
         }
 
         // GET: Jobs/Delete/5
+        [Authorize(Roles = "Administrator")]
         public IActionResult Delete(int? id)
         {
             if (id == null) return NotFound();
@@ -120,6 +126,7 @@ namespace WAD_WorkAndTravel.Controllers
         // POST: Jobs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public IActionResult DeleteConfirmed(int id)
         {
             var job = _jobService.GetJobById(id);

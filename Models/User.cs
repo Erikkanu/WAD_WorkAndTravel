@@ -1,9 +1,6 @@
-﻿namespace WAD_WorkAndTravel.Models
+﻿using Microsoft.AspNetCore.Identity;
+namespace WAD_WorkAndTravel.Models
 {
-    public class User
-    {
-        public int id { get; set; }
-        public string username { get; set; }
-        public string passwordHash { get; set; }
-    }
+    public class User : IdentityUser
+    {}
 }

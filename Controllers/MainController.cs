@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using WAD_WorkAndTravel.Models;
 using WAD_WorkAndTravel.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WAD_WorkAndTravel.Controllers
 {
@@ -38,6 +39,7 @@ namespace WAD_WorkAndTravel.Controllers
         }
 
         // GET: Testimonials/Create
+        [Authorize(Roles = "Administrator")]
         public IActionResult Create()
         {
             return View();
@@ -46,6 +48,7 @@ namespace WAD_WorkAndTravel.Controllers
         // POST: Testimonials/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public IActionResult Create(Testimonial testimonial, Microsoft.AspNetCore.Http.IFormFile ImageFile)
         {
             if (ModelState.IsValid)
@@ -83,6 +86,7 @@ namespace WAD_WorkAndTravel.Controllers
         }
 
         // GET: Testimonials/Edit/5
+        [Authorize(Roles = "Administrator")]
         public IActionResult Edit(int id)
         {
             var testimonial = _testimonialService.GetTestimonialById(id);
@@ -96,6 +100,7 @@ namespace WAD_WorkAndTravel.Controllers
         // POST: Testimonials/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public IActionResult Edit(int id, Testimonial testimonial, Microsoft.AspNetCore.Http.IFormFile ImageFile)
         {
             if (id != testimonial.id)
@@ -141,6 +146,7 @@ namespace WAD_WorkAndTravel.Controllers
         }
 
         // GET: Testimonials/Delete/5
+        [Authorize(Roles = "Administrator")]
         public IActionResult Delete(int id)
         {
             var testimonial = _testimonialService.GetTestimonialById(id);
@@ -154,6 +160,7 @@ namespace WAD_WorkAndTravel.Controllers
         // POST: Testimonials/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public IActionResult DeleteConfirmed(int id)
         {
             var testimonial = _testimonialService.GetTestimonialById(id);

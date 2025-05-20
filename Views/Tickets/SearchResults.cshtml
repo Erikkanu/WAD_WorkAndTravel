@@ -38,9 +38,12 @@ else
     <section class="container mt-5 pt-5 mb-5">
         <h2 class="text-center mb-4">Flight Search Results</h2>
         <div class="text-end mb-3">
-            <a asp-controller="Tickets" asp-action="Create" class="btn btn-success">
-                <i class="bi bi-plus-circle"></i> Add New Flight
-            </a>
+            @if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
+            {
+                <a asp-controller="Tickets" asp-action="Create" class="btn btn-success">
+                    <i class="bi bi-plus-circle"></i> Add New Flight
+                </a>
+            }            
         </div>
         <div class="card shadow">
             <div class="card-body">
@@ -73,12 +76,15 @@ else
                                         <a asp-controller="Tickets" asp-action="Details" asp-route-id="@ticket.TicketID" class="btn btn-info btn-sm">
                                             <i class="bi bi-info-circle"></i> Details
                                         </a>
-                                        <a asp-controller="Tickets" asp-action="Edit" asp-route-id="@ticket.TicketID" class="btn btn-warning btn-sm">
-                                            <i class="bi bi-pencil"></i> Edit
-                                        </a>
-                                        <a asp-controller="Tickets" asp-action="Delete" asp-route-id="@ticket.TicketID" class="btn btn-danger btn-sm">
-                                            <i class="bi bi-trash"></i> Delete
-                                        </a>
+                                        @if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
+                                        {
+                                            <a asp-controller="Tickets" asp-action="Edit" asp-route-id="@ticket.TicketID" class="btn btn-warning btn-sm">
+                                                <i class="bi bi-pencil"></i> Edit
+                                            </a>
+                                            <a asp-controller="Tickets" asp-action="Delete" asp-route-id="@ticket.TicketID" class="btn btn-danger btn-sm">
+                                                <i class="bi bi-trash"></i> Delete
+                                            </a>
+                                        }                                        
                                     </div>
                                 </td>
                             </tr>

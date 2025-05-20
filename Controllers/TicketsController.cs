@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Linq;
 using WAD_WorkAndTravel.Models;
@@ -23,6 +24,7 @@ namespace WAD_WorkAndTravel.Controllers
         }
 
         // GET: Tickets/Search
+        [Authorize]
         public IActionResult Search(string origin, string destination, DateOnly? departure, DateOnly? returnDate)
         {
             var tickets = _ticketService.SearchTickets(origin, destination, departure, returnDate);
@@ -43,6 +45,7 @@ namespace WAD_WorkAndTravel.Controllers
         }
 
         // GET: Tickets/Create
+        [Authorize(Roles = "Administrator")]
         public IActionResult Create()
         {
             return View();
@@ -51,6 +54,7 @@ namespace WAD_WorkAndTravel.Controllers
         // POST: Tickets/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public IActionResult Create([Bind("FlightNumber,Airline,DepCity,DepAirport,ArrCity,ArrAirport,DepDate,ArrDate,Price")] Ticket ticket)
         {
             if (ModelState.IsValid)
@@ -62,6 +66,7 @@ namespace WAD_WorkAndTravel.Controllers
         }
 
         // GET: Tickets/Edit/5
+        [Authorize(Roles = "Administrator")]
         public IActionResult Edit(int id)
         {
             var ticket = _ticketService.GetTicketById(id);
@@ -77,6 +82,7 @@ namespace WAD_WorkAndTravel.Controllers
         // POST: Tickets/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public IActionResult Edit(int id, [Bind("TicketID,FlightNumber,Airline,DepCity,DepAirport,ArrCity,ArrAirport,DepDate,ArrDate,Price")] Ticket ticket)
         {
             if (id != ticket.TicketID)
@@ -93,6 +99,7 @@ namespace WAD_WorkAndTravel.Controllers
         }
 
         // GET: Tickets/Delete/5
+        [Authorize(Roles = "Administrator")]
         public IActionResult Delete(int id)
         {
             var ticket = _ticketService.GetTicketById(id);
@@ -108,6 +115,7 @@ namespace WAD_WorkAndTravel.Controllers
         // POST: Tickets/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public IActionResult DeleteConfirmed(int id)
         {
             var ticket = _ticketService.GetTicketById(id);

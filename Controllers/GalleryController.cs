@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using WAD_WorkAndTravel.Models;
 using WAD_WorkAndTravel.Services;
 
@@ -32,6 +33,7 @@ namespace WAD_WorkAndTravel.Controllers
         }
 
         // GET: Gallery/Create
+        [Authorize(Roles = "Administrator")]
         public IActionResult Create()
         {
             return View();
@@ -40,6 +42,7 @@ namespace WAD_WorkAndTravel.Controllers
         // POST: Gallery/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public IActionResult Create(GalleryPost galleryPost)
         {
             if (ModelState.IsValid)
@@ -51,6 +54,7 @@ namespace WAD_WorkAndTravel.Controllers
         }
 
         // GET: Gallery/Edit/5
+        [Authorize(Roles = "Administrator")]
         public IActionResult Edit(int id)
         {
             var galleryPost = _galleryService.GetGalleryPostById(id);
@@ -64,6 +68,7 @@ namespace WAD_WorkAndTravel.Controllers
         // POST: Gallery/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public IActionResult Edit(int id, GalleryPost galleryPost)
         {
             if (id != galleryPost.id)
@@ -80,6 +85,7 @@ namespace WAD_WorkAndTravel.Controllers
         }
 
         // GET: Gallery/Delete/5
+        [Authorize(Roles = "Administrator")]
         public IActionResult Delete(int id)
         {
             var galleryPost = _galleryService.GetGalleryPostById(id);
@@ -93,6 +99,7 @@ namespace WAD_WorkAndTravel.Controllers
         // POST: Gallery/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public IActionResult DeleteConfirmed(int id)
         {
             var galleryPost = _galleryService.GetGalleryPostById(id);
