@@ -39,7 +39,7 @@ namespace WAD_WorkAndTravel.Controllers
         }
 
         // GET: Testimonials/Create
-        [Authorize(Roles = "Administrator")]
+        [Authorize]
         public IActionResult Create()
         {
             return View();
@@ -48,7 +48,7 @@ namespace WAD_WorkAndTravel.Controllers
         // POST: Testimonials/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Administrator")]
+        [Authorize]
         public IActionResult Create(Testimonial testimonial, Microsoft.AspNetCore.Http.IFormFile ImageFile)
         {
             if (ModelState.IsValid)

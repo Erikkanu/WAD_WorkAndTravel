@@ -14,7 +14,6 @@ builder.Services.AddRazorPages();
 builder.Services.AddScoped<IJobService, JobService>();
 builder.Services.AddScoped<ITicketService, TicketService>();
 builder.Services.AddScoped<ITestimonialService, TestimonialService>();
-//builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IRegistrationFormService, RegistrationFormService>();
 builder.Services.AddScoped<IGalleryPostService, GalleryPostService>();
 
@@ -33,16 +32,6 @@ builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfi
     .AddRoles<IdentityRole>() // Add roles support
     .AddEntityFrameworkStores<WAT_Context>();
 
-// Register AuthService
-//builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-//    .AddCookie(options =>
-//    {
-//        options.LoginPath = "/Login";  // Redirect to the login page if not authenticated
-//    });
-//builder.Services.AddScoped<AuthService>();
-//builder.Services.AddScoped<UserService>();
-
-// Enable session management
 builder.Services.AddSession();
 builder.Services.AddHttpContextAccessor();
 
@@ -56,7 +45,7 @@ using (var scope = app.Services.CreateScope())
     var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
 
     // 1. Ensure roles exist
-    string[] roles = { "Admin", "User" };
+    string[] roles = { "Administrator", "User" };
     foreach (var role in roles)
     {
         if (!await roleManager.RoleExistsAsync(role))
@@ -74,7 +63,7 @@ using (var scope = app.Services.CreateScope())
         var result = await userManager.CreateAsync(adminUser, adminPassword);
         if (result.Succeeded)
         {
-            await userManager.AddToRoleAsync(adminUser, "Admin");
+            await userManager.AddToRoleAsync(adminUser, "Administrator");
         }
     }
 
@@ -99,25 +88,6 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
-
-// Create users on app startup for testing
-//using (var scope = app.Services.CreateScope())
-//{
-//    var services = scope.ServiceProvider;
-//    var userService = services.GetRequiredService<UserService>();
-
-//    try
-//    {
-//        // Create some test users
-//        userService.CreateUser("user1", "password123");
-//        userService.CreateUser("user2", "password456");
-//        userService.CreateUser("user3", "password789");
-//    }
-//    catch (Exception ex)
-//    {
-//        Console.WriteLine("Error seeding users: " + ex.Message);
-//    }
-//}
 
 app.UseHttpsRedirection();
 app.UseRouting();

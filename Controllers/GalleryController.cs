@@ -33,7 +33,7 @@ namespace WAD_WorkAndTravel.Controllers
         }
 
         // GET: Gallery/Create
-        [Authorize(Roles = "Administrator")]
+        [Authorize]
         public IActionResult Create()
         {
             return View();
@@ -42,7 +42,7 @@ namespace WAD_WorkAndTravel.Controllers
         // POST: Gallery/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Administrator")]
+        [Authorize]
         public IActionResult Create(GalleryPost galleryPost)
         {
             if (ModelState.IsValid)
